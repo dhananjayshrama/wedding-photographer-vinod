@@ -1,0 +1,150 @@
+/* Navbar styles — uses the same CSS variables as App.css / index.css
+   (--bg, --text, --text-h, --border, --accent, --accent-bg) so it matches
+   your light/dark theme automatically. */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 72px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background: color-mix(in srgb, var(--bg, #fff) 85%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border, #e5e4e7);
+}
+
+.navbar-inner {
+  height: 64px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--text-h, #08060d);
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links a {
+  display: block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: var(--text, #6b6375);
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.navbar-links a:hover {
+  color: var(--text-h, #08060d);
+  background: var(--accent-bg, rgba(170, 59, 255, 0.1));
+}
+
+.navbar a:focus-visible,
+.navbar-toggle:focus-visible {
+  outline: 2px solid var(--accent, #aa3bff);
+  outline-offset: 2px;
+}
+
+.navbar-links a.navbar-cta {
+  margin-left: 8px;
+  color: var(--accent, #aa3bff);
+  background: var(--accent-bg, rgba(170, 59, 255, 0.1));
+  border: 2px solid transparent;
+  padding: 6px 12px;
+  transition: border-color 0.3s;
+}
+
+.navbar-links a.navbar-cta:hover {
+  color: var(--accent, #aa3bff);
+  border-color: var(--accent-border, rgba(170, 59, 255, 0.5));
+}
+
+/* Hamburger (hidden on desktop) */
+.navbar-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: none;
+  border: 1px solid var(--border, #e5e4e7);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.navbar-toggle .bar {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--text-h, #08060d);
+  border-radius: 2px;
+}
+
+@media (max-width: 1024px) {
+  .navbar-inner {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 720px) {
+  .navbar-toggle {
+    display: flex;
+  }
+
+  .navbar-links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    padding: 12px 20px 16px;
+    background: var(--bg, #fff);
+    border-bottom: 1px solid var(--border, #e5e4e7);
+  }
+
+  .navbar-links.is-open {
+    display: flex;
+  }
+
+  .navbar-links a {
+    padding: 12px 14px;
+  }
+
+  .navbar-links a.navbar-cta {
+    margin-left: 0;
+    text-align: center;
+  }
+}
